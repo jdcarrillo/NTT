@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Interface\NTT.Interfaces.csproj" />
+    <ProjectReference Include="..\NTT.Data\NTT.Entities.csproj" />
+    <ProjectReference Include="..\NTT.Util\NTT.Util.csproj" />
+  </ItemGroup>
+
+</Project>
