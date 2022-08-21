@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlTypes;
+using System.Globalization;
 
 namespace NTT.Repository
 {
@@ -23,6 +24,7 @@ namespace NTT.Repository
             _context = context;
             _logger = logger;
         }
+
 
         public async Task<dynamic> FindBy(string valor)
         {
@@ -44,7 +46,7 @@ namespace NTT.Repository
             dynamic query;
             try
             {
-                query = movimientosCuentaRpt();
+                query = movimientosCuentaRpt("");
 
             }
             catch (Exception ex)
@@ -55,7 +57,21 @@ namespace NTT.Repository
 
 
         }
+        public async Task<dynamic> FindByDate(string fechaInicio, string FechaFin)
+        {
+            dynamic query;
+            try
+            {
+                query = movimientosCuentaRpt(fechaInicio, FechaFin);
+                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return await Task.Run(() => query);
 
+        }
         #region Private
         private dynamic movimientosCuentaRpt(string valor = "")
         {
@@ -102,6 +118,49 @@ namespace NTT.Repository
                    Movimiento = mcueng.Movimiento,
                    Saldo_Disponible = mcueng.Saldo
                };
+
+            return query;
+        }
+
+        /// <summary>
+        /// Busqueda por fecha
+        /// </summary>
+        /// <param name="fInicio"></param>
+        /// <param name="fFin"></param>
+        /// <returns></returns>
+        private dynamic movimientosCuentaRpt(string fInicio = "", string fFin = "")
+        {
+            dynamic query;
+
+            IFormatProvider culture = new CultureInfo("en-EC", true);
+            DateTime fechaInicio = DateTime.ParseExact(fInicio, "dd/MM/yyyy", culture);
+            DateTime fechaFin = DateTime.ParseExact(fFin, "dd/MM/yyyy", culture);
+
+
+            query =
+                   from per in _context.Personas
+                   join cli in _context.Clientes on per.PersonaId equals cli.PersonaId into perCliGroup
+                   from pcg in perCliGroup.DefaultIfEmpty()
+                   join cuen in _context.Cuenta on pcg.ClienteId equals cuen.ClienteId into cuenCliGroup
+                   from ccg in cuenCliGroup.DefaultIfEmpty()
+                   join mov in _context.Movimientos on ccg.CuentaId equals mov.CuentaId into movCliGroup
+                   from mcg in movCliGroup.DefaultIfEmpty()
+                   join mcu in _context.CuentaMovimientos on mcg.MovimientoId equals mcu.MovimientoId into movCuenGroup
+                   from mcueng in movCuenGroup.DefaultIfEmpty()
+                   where mcueng.Saldo != null &&
+                   (mcg.Fecha >= fechaInicio && mcg.Fecha <= fechaFin)
+
+                   select new
+                   {
+                       Fecha = mcg.Fecha,
+                       Cliente = per.Nombre,
+                       Numero_Cuenta = ccg.NumeroCuenta,
+                       Tipo = ccg.TipoCuenta,
+                       Saldo_Inicial = ccg.SaldoInicial,
+                       Estado = ccg.Estado,
+                       Movimiento = mcueng.Movimiento,
+                       Saldo_Disponible = mcueng.Saldo
+                   };
 
             return query;
         }

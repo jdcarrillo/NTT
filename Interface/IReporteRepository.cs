@@ -11,5 +11,7 @@ namespace NTT.Interfaces
     {
         Task<dynamic> FindAll();
         Task<dynamic> FindBy(string valor);
+
+        Task<dynamic> FindByDate(string fechaInicio,string fechaFin);
     }
 }
