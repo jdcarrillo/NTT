@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "c70a9eb8-1193-4b73-8212-63fd5934fb20",
+		"name": "NTT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5104828"
+	},
+	"item": [
+		{
+			"name": "Personas_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Juan Osorio\",\r\n    \"genero\": \"Hombre\",\r\n    \"edad\": \"40\",\r\n    \"identificacion\": \"1717171713\",\r\n    \"direccion\": \"13 junio y Equinoccial\",\r\n    \"telefono\": \"098874587\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Personas/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Personas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clientes_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contrasena\": \"1245\",\r\n    \"estado\": true,\r\n    \"personaid\":3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Clientes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuentas_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numeroCuenta\": \"585545\",\r\n    \"tipoCuenta\":\"Corriente\",\r\n    \"SaldoInicial\":1000,\r\n    \"estado\": true,\r\n    \"clienteId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Cuentas",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimientos_get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44344/api/Movimientos/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Movimientos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reporte",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"CuentaId\": 1,\r\n  \"tipoMovimiento\":\"retiro\",\r\n  \"Saldo\": 750\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Reportes/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Reportes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimientos_delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"MovimientoId\": 2,\r\n    \"CuentaId\": 1,\r\n    \"Fecha\": \"2022-08-21T00:00:00\",\r\n    \"TipoMovimiento\": \"Depósito\",\r\n    \"Estado\": true,\r\n    \"Saldo\": 100.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Movimientos",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Movimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimientos_put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cuentaId\": \"2\",\r\n    \"MovimientoId\":4,\r\n    \"tipoMovimiento\":\"Retiro\",\r\n    \"estado\":true,\r\n    \"saldo\":\"40\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Movimientos",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Movimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clientes_get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contrasena\": \"5678\",\r\n    \"estado\": true,\r\n    \"personaid\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Clientes/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Clientes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Personas_get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Marianela Montalvo\",\r\n    \"genero\": \"Mujer\",\r\n    \"edad\": \"40\",\r\n    \"identificacion\": \"1713647641\",\r\n    \"direccion\": \"Amazonas y NNUU\",\r\n    \"telefono\": \"098254785\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Personas/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Personas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimientos_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cuentaId\": \"4\",\r\n    \"tipoMovimiento\":\"Retiro\",\r\n    \"saldo\":\"540\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44344/api/Movimientos",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44344",
+					"path": [
+						"api",
+						"Movimientos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
